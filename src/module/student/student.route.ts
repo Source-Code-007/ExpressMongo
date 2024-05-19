@@ -7,7 +7,7 @@ router.post('/create-student', createStudentController)
 router.get('/', getAllStudentsController)
 router.get('/:_id', getStudentByIdController)
 router.delete('/:_id', deleteStudentByIdController)
-router.delete('/delete-students', deleteAllStudentsController)
+router.delete('/', deleteAllStudentsController)
 
 
 export {router as studentRoute}

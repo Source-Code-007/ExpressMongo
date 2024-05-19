@@ -1,12 +1,18 @@
 import { Request, Response } from "express"
 import { deleteAllStudents, deleteStudentById, getAllStudents, getStudentById, insertStudentToDb } from "./student.service"
+import studentValidateSchema from "./student.validate"
 
 
 const createStudentController= async(req:Request, res:Response)=> {
-    const student =  req.body
+    const studentData =  req.body
 
+    
+    
     try {
-        const result = await insertStudentToDb(student)
+        const zodStudentValidateSchema =  studentValidateSchema.parse(studentData)
+
+
+        const result = await insertStudentToDb(zodStudentValidateSchema)
         if(result){
             res.status(200).send({success:true, message:'Student insert successfully', data:result})
         }
@@ -59,6 +65,7 @@ const deleteStudentByIdController= async(req:Request, res:Response)=> {
 const deleteAllStudentsController = async(req:Request, res:Response)=> {
     try{
         const deleteStudents = await deleteAllStudents()
+
         if(deleteStudents){
             res.status(200).send({success:true, message:'Students are deleted successfully', data:deleteStudents})
         }
