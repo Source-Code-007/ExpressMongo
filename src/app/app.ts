@@ -1,10 +1,14 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
+import { studentRoute } from '../module/student/student.route'
 const app: Application = express()
 
 // parser
 app.use(express.json())
 app.use(cors())
+
+// Router
+app.use('/api/v1/students', studentRoute)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('This is homepage')
