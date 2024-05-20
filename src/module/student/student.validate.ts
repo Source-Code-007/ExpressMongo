@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const nameValidateSchema = z.object({
   firstName: z.string().min(1),
-  middleName: z.string().optional(),
+  middleName: z.string(),
   lastName: z.string().min(1),
 })
 
@@ -21,6 +21,7 @@ const guardianInfoValidateSchema = z.object({
 const studentValidateSchema = z.object({
   name: nameValidateSchema,
   age: z.number().int().positive().min(1),
+  password: z.string().min(6).max(20),
   roll: z.number().positive().min(1),
   department: z.string().min(1),
   address: addressValidateSchema.required(),

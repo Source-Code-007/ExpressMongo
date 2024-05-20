@@ -25,6 +25,7 @@ export type IBloodGroup =
 
 export type IStudent = {
   name: IName
+  password: string
   department: string
   roll: number
   email: string

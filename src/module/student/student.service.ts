@@ -3,7 +3,13 @@ import { IStudent } from "./student.interface";
 import { Student } from "./student.model";
 
 const insertStudentToDb = async(student:IStudent)=>{
-    const result = await Student.create(student)
+    // Using static method
+    // const result = await Student.create(student)
+
+    // Using instance method
+    const result = new Student(student)
+    result.save()
+
     return result
 }
 const getAllStudents = async()=>{
